@@ -32,6 +32,13 @@ export default function MainMenu() {
       code: "licensegroup",
       path: "/licensingGroup",
     },
+
+    {
+      name: "Authorization",
+      code: "authorization",
+      path: "/Authorization",
+    },
+
   ];
 
   useEffect(() => {

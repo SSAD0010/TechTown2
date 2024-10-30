@@ -2,27 +2,11 @@
 import React from "react";
 import { SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar";
 import Link from "next/link";
-import { Calendar, IdCard, Settings } from "lucide-react";
 import useWindowSize from "@/app/windowSize";
+import { MenuItems } from "@/app/ComponentsList";
 
 export default function SideBars() {
-  const items = [
-    {
-      title: "License Group",
-      url: "/licensingGroup",
-      icon: Calendar,
-    },
-    {
-      title: "License Request",
-      url: "/licensing",
-      icon: IdCard,
-    },
-    {
-      title: "Settings",
-      url: "/profile",
-      icon: Settings,
-    },
-  ];
+ 
   const { width } = useWindowSize();
 
   const modalClose = () => {
@@ -35,7 +19,7 @@ export default function SideBars() {
   return (
     <div>
     
-      {items.map((item) => (
+      {MenuItems.map((item) => (
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton asChild>
             <Link href={item.url} onClick={modalClose}>

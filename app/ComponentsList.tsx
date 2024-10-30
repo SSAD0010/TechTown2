@@ -5,6 +5,7 @@ import { useAppContext } from "@/context";
 import { useToast } from "@/hooks/use-toast";
 import { getUserInfo } from "@/lib";
 import { Label } from "@radix-ui/react-label";
+import { BookA, Calendar, IdCard, Settings } from "lucide-react";
 import { Router } from "next/router";
 import { useContext, useEffect } from "react";
 
@@ -50,12 +51,12 @@ export async function fgetUserInfo() {
 }
 
 export function Title() {
-  // const getUser = async () => {
-  //   await getUserInfo();
-  // };
-  // useEffect(() => {
-  //   getUser()
-  // }, [])
+  const getUser = async () => {
+    await getUserInfo();
+  };
+  useEffect(() => {
+    getUser()
+  }, [])
 
   const { SelectedMenu } = useAppContext();
   return (
@@ -114,3 +115,32 @@ export const XToast = (x: TypeOfXToast, toast: any) => {
     });
   }
 };
+
+
+
+
+export const MenuItems = [
+  {
+    title: "License Group",
+    url: "/licensingGroup",
+    icon: Calendar,
+  },
+  {
+    title: "License Request",
+    url: "/licensing",
+    icon: IdCard,
+  },
+
+  {
+    title: "Authorization",
+    url: "/authorization",
+    icon: BookA,
+  },
+
+
+  {
+    title: "Settings",
+    url: "/profile",
+    icon: Settings,
+  },
+];

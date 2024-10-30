@@ -16,15 +16,16 @@ import SideBars from "./SideBars";
 export function AppSidebar() {
   return (
     <Sidebar>
+      <div className="absolute -right-10 top-3">
+              <SidebarTrigger/>
+            </div>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="my-4">
             <AppsidebarTitle />
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <div>
-              <SidebarTrigger />
-            </div>
+            
             <SidebarMenu>
               <SideBars />
             </SidebarMenu>

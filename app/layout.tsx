@@ -50,6 +50,11 @@ export default function RootLayout({
               <div className="   w-full mx-auto  ">
                 <SidebarProvider>
                   <SideBarRoot />
+                  <div className="relative ">
+                  <div className="absolute  -top-[44px] left-[12px]">
+                    <SidebarTrigger />
+                  </div>
+                  </div>
                   {/*  mx-auto  min-h-[100vh]    max-w-[768px]  */}
                   <div className="   px-4 font-semibold mt-4 w-full   max-w-[768px] ">
                     <Title />

@@ -23,9 +23,7 @@ export default function SideBarRoot() {
     
       {islogged !="/" && (
         <>
-          <div className=" absolute mt-4">
-            <SidebarTrigger />
-          </div>
+
           <AppSidebar />
         </>
       )}
