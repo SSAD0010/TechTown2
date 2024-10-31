@@ -8,11 +8,17 @@ export function IWrapper({ children }: { children: React.ReactNode }) {
   const [SelectedMenu, setSelectedMenu] = useState("");
   const [Loading, setLoading] = useState(false);
   const [co_license, setco_license] = useState([]);
+  const [authorization_SelectedUser, setauthorization_SelectedUser] = useState({
+    code: "",
+    uname: "",
+  });
 
   return (
     <>
       <IContext.Provider
         value={{
+          authorization_SelectedUser,
+          setauthorization_SelectedUser,
           useInfo,
           setuseInfo,
           SelectedMenu,

@@ -19,7 +19,7 @@ export default function Header() {
   }, [isDark]);
 
   return (
-    <div className=" border-b    px-4 container flex h-14 max-w-screen-2xl items-center  bg-popover">
+    <div className="  border-b    px-4 container flex h-14 max-w-screen-2xl items-center  bg-popover">
       <div className=" flex ">
         {/* <MainMenuSheet /> */}
      

@@ -112,6 +112,8 @@ export async function getUserInfo() {
     await logout();
     return null;
   }
+
+  updateSessionUserInfo();
   return await decrypt(userinfo);
 }
 

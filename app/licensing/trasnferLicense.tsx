@@ -2,20 +2,17 @@
 
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { Button } from "@/components/ui/button";
-import { toast, useToast } from "@/hooks/use-toast";
-import { getUserInfo } from "@/lib";
-import { Loader2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import React from "react";
 import { XToast } from "../ComponentsList";
 import { Badge } from "@/components/ui/badge";
 import { useAppContext } from "@/context";
 
 export default function TrasnferLicense({ user }: any) {
-  const [userData, setuserData] = useState([]);
   // const [loading, setLoading] = useState(false);
   // const [Colicense, setColicense] = useState([]);
   const { toast } = useToast();
-  const { Loading, setLoading, co_license, setco_license } = useAppContext();
+  const { setLoading, co_license, setco_license } = useAppContext();
 
   // const getUserLicense = async () => {
   //   if (user?.length <= 0) return;
@@ -24,7 +21,7 @@ export default function TrasnferLicense({ user }: any) {
   //   );
   // };
 
-  const onClicklicenseRqst = async (e: string, i: string, Ix: string) => {
+  const onClicklicenseRqst = async (e: string, i: string) => {
     // if (Ix == "Y") {
     //   toast({
     //     title: "Note!",
@@ -127,13 +124,12 @@ export default function TrasnferLicense({ user }: any) {
               <div className="flex justify-between mt-2">
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    {ee.onlineusercode}
+                    {ee.onlineusercode} - {ee.status}
                   </p>
                   <p className="text-sm text-muted-foreground"> {ee.U_NAME}</p>
                 </div>
 
-                <div className="flex-1 space-y-1">{ee.status}</div>
-
+                 
                 <div className="flex  gap-2">
                   {listOfLicense.map((e) => (
                     <>
@@ -146,7 +142,7 @@ export default function TrasnferLicense({ user }: any) {
                               onClicklicenseRqst(
                                 e.name,
                                 ee.onlineusercode,
-                                ee[e.onlineS]
+                                // ee[e.onlineS]
                               )
                             }
                           >

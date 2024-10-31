@@ -16,8 +16,8 @@ import SideBars from "./SideBars";
 export function AppSidebar() {
   return (
     <Sidebar>
-      <div className="absolute -right-10 top-3">
-              <SidebarTrigger/>
+      <div className="absolute -right-10 top-3 bg-background rounded-md">
+              <SidebarTrigger />
             </div>
       <SidebarContent>
         <SidebarGroup>
