@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "../app/image/DolmarLogopng.png";
 import Image from "next/image";
-import { SidebarTrigger } from "./ui/sidebar";
 export default function AppsidebarTitle() {
   return (
     <div className="flex">
@@ -17,8 +16,7 @@ export default function AppsidebarTitle() {
         <br />
         <span className="text-foreground font- ">Venture Inc</span>
       </div>
-      <div>
-      </div>
+      <div></div>
     </div>
   );
 }

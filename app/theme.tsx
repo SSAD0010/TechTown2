@@ -4,8 +4,6 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import TechTown from "./TechTown";
-import MainMenu from "./MainMenu";
-import MainMenuSheet from "./MainMenuSheet";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function Header() {
@@ -19,11 +17,11 @@ export default function Header() {
   }, [isDark]);
 
   return (
-    <div className="  border-b    px-4 container flex h-14 max-w-screen-2xl items-center  bg-popover">
+    <div className="  w-full  border-b    px-4  flex h-14 items-center  bg-popover">
       <div className=" flex ">
         {/* <MainMenuSheet /> */}
-     
-        {/* <TechTown /> */}
+     <SidebarTrigger/>
+        <TechTown />
       </div>
       <div className="   "></div>
       <div className="w-full"></div>

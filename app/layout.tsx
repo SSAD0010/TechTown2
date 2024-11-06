@@ -4,11 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "./ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "./theme";
-import MainMenu from "./MainMenu";
 import { IWrapper } from "@/context";
-import { Title } from "./ComponentsList";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 import SideBarRoot from "./SideBarRoot";
 import { Suspense } from "react";
 import Loading from "./loading";
@@ -36,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -45,21 +42,24 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <IWrapper>
-            <div className=" w-full font-[family-name:var(--font-geist-sans)]">
-              <Header />
-              <div className="   w-full mx-auto  ">
+            <div className="    font-[family-name:var(--font-geist-sans)]">
+              <div className="   w-full mx-auto">
                 <SidebarProvider>
                   <SideBarRoot />
+
                   <div className="relative ">
                     <div className="absolute  -top-[44px] left-[12px]">
                       <SidebarTrigger />
                     </div>
                   </div>
                   {/*  mx-auto  min-h-[100vh]    max-w-[768px]  */}
-                  <div className="   px-4 font-semibold mt-4 w-full   max-w-[768px] ">
+                  <div className="    font-semibold   w-full  relative  ">
                     {/* <Title /> */}
-                    <br />
-                    <Suspense fallback={<Loading />}>{children}</Suspense>
+                    <Header />
+
+                    <Suspense fallback={<Loading />}>
+                      <div className="p-4 ">{children}</div>
+                    </Suspense>
                   </div>
                 </SidebarProvider>
               </div>

@@ -3,7 +3,7 @@ import React from "react";
 import {
   Table,
   TableBody,
-  TableCaption, 
+  TableCaption,
   TableHead,
   TableHeader,
   TableRow,
@@ -16,7 +16,7 @@ export default function page() {
     <div className="sm:flex gap-4">
       <div className="  sm:h-[80vh] h-[40vh]  overflow-auto border p-4 rounded-md">
         <Table className="">
-          <TableCaption>Module list</TableCaption>
+          <TableCaption>User list</TableCaption>
 
           <TableHeader>
             <TableRow>
