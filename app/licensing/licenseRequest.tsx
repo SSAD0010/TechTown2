@@ -1,17 +1,29 @@
 "use client";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
-import { XToast } from "../ComponentsList";
+import React from "react";
+import { ToastLabels } from "../ComponentsList";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { useAppContext } from "@/context";
 
-export default function LicenseRequest({ user }: any) {
-  const [userData, setuserData] = useState([]);
-  const { Loading, setLoading, co_license, setco_license } = useAppContext();
+type TypeOfUser = {
+  user: {
+    user: {
+      username: string;
+      U_NAME: string;
+    };
+    expires: string;
+    iat: number;
+    exp: number;
+  };
+};
 
-  const [userDataLicense, setuserDataLicense] = useState([]);
+export default function LicenseRequest({ user }: TypeOfUser) {
+  // const [userData, setuserData] = useState([]);
+  const { setLoading, co_license, setco_license } = useAppContext();
+
+  // const [userDataLicense, setuserDataLicense] = useState([]);
   const { toast } = useToast();
   const listOfLicense = [
     { GroupS: "Group_crm", name: "crm", onlineS: "online_crm" },
@@ -42,10 +54,13 @@ export default function LicenseRequest({ user }: any) {
 
     const x = await EXEC_API({
       SQLID: 23,
-      VAL1: user?.user?.username,
+      VAL1: user.user.username,
       VAL2: e,
     });
-    XToast(x, toast);
+    toast({
+      title:ToastLabels(x, "t"),
+      description: ToastLabels(x, "d"),
+    });
     console.log(x[0].Code);
     if (x[0].Code == "-1") {
       setLoading(false);
@@ -55,7 +70,7 @@ export default function LicenseRequest({ user }: any) {
       await EXEC_API({
         SQLID: 1,
         VAL1: "A",
-        VAL2: user?.user?.username,
+        VAL2: user.user.username,
         VAL3: "",
         VAL4:
           e == "crm"
@@ -113,7 +128,7 @@ export default function LicenseRequest({ user }: any) {
         <div>Request a License</div>
         <div className="text-sm ">
           {user?.user?.username}{" "}
-          <span className="text-muted-foreground">{user?.user?.U_NAME} </span>
+          <span className="text-muted-foreground">{user?.user?.username} </span>
         </div>
       </div>
       <div className="flex gap-2 mt-2">{Buttons()}</div>

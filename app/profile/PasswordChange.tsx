@@ -2,14 +2,12 @@
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Toast } from "@/components/ui/toast";
 import { useAppContext } from "@/context";
 import { useToast } from "@/hooks/use-toast";
-import { getUserInfo, toEnrypt } from "@/lib";
+import { toEnrypt } from "@/lib";
 import { Label } from "@radix-ui/react-label";
 import { Pencil } from "lucide-react";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function PasswordChange() {
   const { useInfo } = useAppContext();
@@ -31,7 +29,7 @@ export default function PasswordChange() {
   // };
 
   // const [PassApiReturn, setPassApiReturn] = useState(<TypeOfChangePasswordApiReturn>([]));
-  const [PassApiReturn, setPassApiReturn] =useState<any>([]);
+  // const [PassApiReturn, setPassApiReturn] =useState<any>([]);
 
   const [passwords, setPasswords] = useState<TypeOfPasswords>({
     oldPass: "",
@@ -86,7 +84,11 @@ export default function PasswordChange() {
         <Button
           onClick={() => {
             setShowChange(!ShowChange);
-            setPasswords([]);
+            setPasswords({
+              oldPass: "",
+              newPass: "",
+              ConfPass: "",
+            });
           }}
           className="p-1 m-0 h-fit bg-background text-foreground hover:text-foreground hover:bg-muted"
         >

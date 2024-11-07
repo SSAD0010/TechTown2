@@ -1,5 +1,4 @@
 import { getUserInfo, logout, updateSessionUserInfo } from "@/lib";
-import { useRouter } from "next/router";
 
 export const SessionController = async () => {
 

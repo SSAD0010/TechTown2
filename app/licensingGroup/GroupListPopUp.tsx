@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 import React, { useState } from "react";
-import { XToast } from "../ComponentsList";
+import { ToastLabels } from "../ComponentsList";
 
 type GroupListPopUpType = {
   DocEntry: number;
@@ -50,7 +50,12 @@ export default function GroupListPopUp({
                       VAL1: selectedUser,
                       VAL2: e.DocEntry.toString(),
                     });
-                    XToast(x, toast);
+                    // XToast(x);
+
+                    toast({
+                      title:ToastLabels(x, "t"),
+                      description: ToastLabels(x, "d"),
+                    });
                     setSelectedGroup( e.GroupName)
                   }}
                 >

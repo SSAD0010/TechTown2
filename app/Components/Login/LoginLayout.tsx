@@ -10,11 +10,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { login } from "@/lib";
+import React from "react";
+// import { useRouter } from "next/navigation";
 export default function LoginLayout() {
-  const router = useRouter();
+  // const router = useRouter();
 
   // const Register = () => {
   //   router.push("/register");
@@ -39,7 +38,8 @@ export default function LoginLayout() {
           </CardDescription>
         </CardHeader>
         <form
-          action={async (data) => {
+          // action={async (data) => {
+          action={async () => {
             "use client";
             // console.log({ data });
             // const x = await login(data);

@@ -1,7 +1,34 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 
-const IContext = createContext<unknown>(undefined);
+interface User {
+  code: string;
+  uname: string;
+}
+
+interface AppContextType {
+  authorization_SelectedUser: {
+    code: string;
+    uname: string;
+  };
+  setauthorization_SelectedUser: Dispatch<SetStateAction<User>>;
+  useInfo: any;
+  setuseInfo: any;
+  SelectedMenu: any;
+  setSelectedMenu: any;
+  Loading: any;
+  setLoading: any;
+  co_license: any;
+  setco_license: any;
+}
+
+const IContext = createContext<AppContextType | null>(null);
 
 export function IWrapper({ children }: { children: React.ReactNode }) {
   const [useInfo, setuseInfo] = useState("");

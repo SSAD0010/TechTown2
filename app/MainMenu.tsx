@@ -7,11 +7,10 @@ import { getUserInfo, logout } from "@/lib";
 import { useAppContext } from "@/context";
 import { SessionController } from "./SessionControl";
 import { ModalClose } from "./ComponentsList";
-import { Separator } from "@/components/ui/separator";
 export default function MainMenu() {
   const { setSelectedMenu, setuseInfo } = useAppContext();
   const [loged, setloged] = useState(true);
-  const [activebtnId, setactivebtnId] = useState("");
+  const [activebtnId] = useState("");
   const router = useRouter();
   // const adminModule = [
   //   { name: "System Initialization", code: "SystemInitialization" },
@@ -52,6 +51,7 @@ export default function MainMenu() {
       setloged(false);
       router.push("/");
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // useEffect(() => {

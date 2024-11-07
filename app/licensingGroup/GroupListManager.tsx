@@ -14,24 +14,33 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import React, { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { XToast } from "../ComponentsList";
+import {   ToastLabels } from "../ComponentsList";
 
 export default function GroupListManager() {
+  const { toast } = useToast();
   const [groupList, setgroupList] = useState([]);
   const [groupNameToAdd, setgroupNameToAdd] = useState("");
   const getGroup = async () => {
     setgroupList(await EXEC_API({ SQLID: 9 }));
   };
-  const { toast } = useToast();
   const addGroupToDB = async () => {
     const x = await EXEC_API({ SQLID: 10, VAL1: groupNameToAdd });
-    XToast(x, toast);
+    // XToast(x);
+
+    toast({
+      title:ToastLabels(x, "t"),
+      description: ToastLabels(x, "d"),
+    });
+
     getGroup();
   };
-  const checkboxHandler = async (e, id ,xx) => {
-    let xxx = xx?"1":"0" 
-    const x = await EXEC_API({ SQLID: 13, VAL1: e, VAL2: id ,VAL3:xxx});
-    XToast(x, toast);
+  const checkboxHandler = async (e: string, id: string, xx: boolean) => {
+    const xxx = xx ? "1" : "0";
+    const x = await EXEC_API({ SQLID: 13, VAL1: e, VAL2: id, VAL3: xxx });
+    toast({
+      title:ToastLabels(x, "t"),
+      description: ToastLabels(x, "d"),
+    });
     getGroup();
   };
   useEffect(() => {
@@ -57,16 +66,34 @@ export default function GroupListManager() {
               <TableCell>{e.DocEntry}</TableCell>
               <TableCell>{e.GroupName}</TableCell>
               <TableCell>
-                <Checkbox  checked={e.crm==1 ?true:false} onCheckedChange={(x) => checkboxHandler("crm", e.DocEntry,x)}/>
+                <Checkbox
+                  checked={e.crm == 1 ? true : false}
+                  onCheckedChange={(x) => checkboxHandler("crm", e.DocEntry, x ? true:false)}
+                />
               </TableCell>
               <TableCell>
-                <Checkbox  checked={e.finance==1 ?true:false} onCheckedChange={(x) => checkboxHandler("finance", e.DocEntry,x)}/>
+                <Checkbox
+                  checked={e.finance == 1 ? true : false}
+                  onCheckedChange={(x) =>
+                    checkboxHandler("finance", e.DocEntry, x ? true:false)
+                  }
+                />
               </TableCell>
               <TableCell>
-                <Checkbox  checked={e.logistics==1 ?true:false} onCheckedChange={(x) => checkboxHandler("logistics", e.DocEntry,x)}/>
+                <Checkbox
+                  checked={e.logistics == 1 ? true : false}
+                  onCheckedChange={(x) =>
+                    checkboxHandler("logistics", e.DocEntry, x ? true:false)
+                  }
+                />
               </TableCell>
               <TableCell>
-                <Checkbox  checked={e.professional==1 ?true:false} onCheckedChange={(x) => checkboxHandler("professional", e.DocEntry,x) }/>
+                <Checkbox
+                  checked={e.professional == 1 ? true : false}
+                  onCheckedChange={(x) =>
+                    checkboxHandler("professional", e.DocEntry, x ? true:false)
+                  }
+                />
               </TableCell>
             </TableRow>
           ))}

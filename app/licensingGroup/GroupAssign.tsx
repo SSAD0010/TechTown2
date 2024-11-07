@@ -33,6 +33,7 @@ export default function GroupAssign() {
           <GroupListPopUp groupList={grouList}   selectedUser={e.USER_CODE} GroupName={e.GroupName} />
         </div>
       ))}
+        {loading?"":""}
     </div>
   );
 }

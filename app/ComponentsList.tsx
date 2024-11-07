@@ -1,13 +1,11 @@
 "use client";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useAppContext } from "@/context";
 import { useToast } from "@/hooks/use-toast";
 import { getUserInfo } from "@/lib";
 import { Label } from "@radix-ui/react-label";
 import { BookA, Calendar, IdCard, Settings } from "lucide-react";
-import { Router } from "next/router";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 export const IToaster = () => {
   const { toast } = useToast();
@@ -55,8 +53,8 @@ export function Title() {
     await getUserInfo();
   };
   useEffect(() => {
-    getUser()
-  }, [])
+    getUser();
+  }, []);
 
   const { SelectedMenu } = useAppContext();
   return (
@@ -94,30 +92,34 @@ type TypeOfXToast = {
   variant?: string;
 };
 
-export const XToast = (x: TypeOfXToast, toast: any) => {
-  // const { toast } = useToast();
-  if (x.error) {
-    toast({
-      title: "Error",
-      description:
-        x.error.originalError?.info?.message || "An unexpected error occurred.",
-    });
-  } else if (Array.isArray(x) && x.length > 0) {
-    toast({
-      title: x[0].title,
-      description: x[0].sms,
-      variant: x[0].variant,
-    });
-  } else {
-    toast({
-      title: "Info",
-      description: "No error or messages provided.",
-    });
+// interface XItem {
+//   title: string;
+// }
+
+// interface X {
+//   error?: boolean;
+//   // You can define other properties of X if needed
+// }
+
+
+export const ToastLabels = (x: TypeOfXToast, type: string) => {
+  if (type == "t") {
+    const toastTitle: string = x.error
+      ? "Error"
+      : Array.isArray(x) && x.length > 0
+      ? x[0].title
+      : "Info";
+    return toastTitle;
   }
+  let toastDescription: string = "Your description here"; // Adjust based on your logic
+  if (x.error) {
+    toastDescription =
+      x.error.originalError?.info?.message || "An unexpected error occurred.";
+  } else if (Array.isArray(x) && x.length > 0) {
+    toastDescription = x[0].sms;
+  } else toastDescription = "No error or messages provided.";
+  return toastDescription;
 };
-
-
-
 
 export const MenuItems = [
   {
@@ -136,7 +138,6 @@ export const MenuItems = [
     url: "/authorization",
     icon: BookA,
   },
-
 
   {
     title: "Settings",

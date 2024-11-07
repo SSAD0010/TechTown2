@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { TableCell, TableRow } from "@/components/ui/table";
 import React, { useEffect, useState } from "react";
-import { MenuItems, XToast } from "../ComponentsList";
+import { MenuItems, ToastLabels } from "../ComponentsList";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useAppContext } from "@/context";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
@@ -11,9 +12,7 @@ export default function ModuleList() {
   const { toast } = useToast();
   const {
     useInfo,
-    setuseInfo,
     authorization_SelectedUser,
-    setauthorization_SelectedUser,
   } = useAppContext();
   const [authdModules, setauthdModules] = useState([]);
   const [loading, setloading] = useState(false);
@@ -41,7 +40,11 @@ export default function ModuleList() {
       VAL5: global == "" ? "false" : "true",
     });
     getAuthdModules();
-    XToast(x, toast);
+
+    toast({
+      title:ToastLabels(x, "t"),
+      description: ToastLabels(x, "d"),
+    });
     setloading(false);
   };
 

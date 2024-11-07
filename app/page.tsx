@@ -17,23 +17,23 @@ import Image from "next/image";
 export default function Home() {
   const { toast } = useToast();
 
-  const [name, setName] = useState("x");
-  const [email, setEmail] = useState("x");
+  // const [name] = useState("x");
+  // const [email] = useState("x");
   const [loading, setloading] = useState(false);
 
-  const selectusers = async () => {
-    // "use server";
-    const response = await fetch("../api/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email }),
-    });
-    const data = await response.json();
-    console.log({ ...data });
-    console.log(data);
-  };
+  // const selectusers = async () => {
+  //   // "use server";
+  //   const response = await fetch("../api/api", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ name, email }),
+  //   });
+  //   const data = await response.json();
+  //   console.log({ ...data });
+  //   console.log(data);
+  // };
   const setSessionAndRedirect = async (data: FormData, x: unknown) => {
     await login(data, x);
   };

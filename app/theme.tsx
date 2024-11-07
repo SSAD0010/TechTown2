@@ -14,6 +14,7 @@ export default function Header() {
   };
   useEffect(() => {
     setTheme(isDark ? "dark" : "light");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDark]);
 
   return (

@@ -4,47 +4,43 @@ import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import React from "react";
-import { XToast } from "../ComponentsList";
+import { ToastLabels } from "../ComponentsList";
 import { Badge } from "@/components/ui/badge";
 import { useAppContext } from "@/context";
 
-export default function TrasnferLicense({ user }: any) {
-  // const [loading, setLoading] = useState(false);
-  // const [Colicense, setColicense] = useState([]);
+type TypeOfUser = {
+  user: {
+    user: {
+      username: string;
+      U_NAME: string;
+    };
+    expires: string;
+    iat: number;
+    exp: number;
+  };
+};
+
+export default function TrasnferLicense({ user }: TypeOfUser) {
   const { toast } = useToast();
   const { setLoading, co_license, setco_license } = useAppContext();
 
-  // const getUserLicense = async () => {
-  //   if (user?.length <= 0) return;
-  //   setColicense(
-  //     await EXEC_API({ SQLID: 16, VAL1: user?.user?.user?.username })
-  //   );
-  // };
-
   const onClicklicenseRqst = async (e: string, i: string) => {
-    // if (Ix == "Y") {
-    //   toast({
-    //     title: "Note!",
-    //     description: `${e} license Already allocated`,
-    //   });
-    //   return;
-    // }
-    // check if allow to request
     setLoading(true);
 
     const x = await EXEC_API({
       SQLID: 22,
-      VAL1: user?.user?.username,
+      VAL1: user.user.U_NAME,
       VAL2: i,
       VAL3: e,
     });
-    XToast(x, toast);
+    toast({
+      title:ToastLabels(x, "t"),
+      description: ToastLabels(x, "d"),
+    });
     console.log(x[0].Code);
-    if (x[0].Code == "-1")
-    {
+    if (x[0].Code == "-1") {
       setLoading(false);
       return;
-
     }
 
     console.log({ e, i });
@@ -70,13 +66,13 @@ export default function TrasnferLicense({ user }: any) {
     setLoading(false);
 
     // XToast(x, toast);
-    getGroupInfo()
+    getGroupInfo();
   };
-
 
   const getGroupInfo = async () => {
     setLoading(true);
-    if(user?.user?.username) setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username }));
+    if (user?.user?.username)
+      setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username }));
     setLoading(false);
   };
 
@@ -129,7 +125,6 @@ export default function TrasnferLicense({ user }: any) {
                   <p className="text-sm text-muted-foreground"> {ee.U_NAME}</p>
                 </div>
 
-                 
                 <div className="flex  gap-2">
                   {listOfLicense.map((e) => (
                     <>
@@ -141,7 +136,7 @@ export default function TrasnferLicense({ user }: any) {
                               // console.log(ee.onlineusercode)
                               onClicklicenseRqst(
                                 e.name,
-                                ee.onlineusercode,
+                                ee.onlineusercode
                                 // ee[e.onlineS]
                               )
                             }

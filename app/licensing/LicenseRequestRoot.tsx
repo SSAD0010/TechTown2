@@ -1,22 +1,32 @@
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
 import LicenseRequest from "./licenseRequest";
-import Loading from "../Loading";
 import { Separator } from "@radix-ui/react-separator";
 import TrasnferLicense from "./trasnferLicense";
 import { Skeleton } from "@/components/ui/skeleton";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { getUserInfo } from "@/lib";
-import { Button } from "@/components/ui/button";
 import { useAppContext } from "@/context";
 
 export default function LicenseRequestRoot() {
-  const [user, setuser] = useState([]);
-  const { Loading, setLoading , co_license, setco_license } = useAppContext();
+  type TypeOfUser = {
+      user: {
+        username: string;
+        U_NAME: string;
+      };
+      expires: string;
+      iat: number;
+      exp: number;
+  };
+
+  const [user, setuser] = useState<TypeOfUser | null>(null);
+
+  const { Loading, setLoading,  setco_license } = useAppContext();
 
   const getGroupInfo = async () => {
     setLoading(true);
-    if(user?.user?.username) setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username }));
+    if (user?.user?.username)
+      setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username }));
     setLoading(false);
   };
 
@@ -27,7 +37,9 @@ export default function LicenseRequestRoot() {
     getSession();
   }, []);
   useEffect(() => {
+    console.log({ user });
     getGroupInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   const LoadingTemplte = () => {
     return (
@@ -52,7 +64,7 @@ export default function LicenseRequestRoot() {
         {Loading ? (
           <LoadingTemplte />
         ) : (
-          <LicenseRequest user={user} co_license={co_license} />
+          <LicenseRequest user={user} />
         )}
       </Suspense>
       <Separator className="my-4" />
@@ -70,7 +82,7 @@ export default function LicenseRequestRoot() {
             <LoadingTemplte />
           </>
         ) : (
-          <TrasnferLicense user={user}  />
+          <TrasnferLicense user={user} />
         )}
       </Suspense>
       {/* <Button onClick={() => console.log(co_license)}></Button> */}

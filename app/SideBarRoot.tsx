@@ -1,6 +1,5 @@
 "use client";
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
  
