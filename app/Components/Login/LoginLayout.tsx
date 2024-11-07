@@ -41,10 +41,10 @@ export default function LoginLayout() {
           // action={async (data) => {
           action={async () => {
             "use client";
-            // console.log({ data });
+            // // console.log({ data });
             // const x = await login(data);
             // // const session = await getSession();
-            // console.log({ x });
+            // // console.log({ x });
           }}
         >
           <CardContent>

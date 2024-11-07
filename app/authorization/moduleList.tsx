@@ -30,7 +30,7 @@ export default function ModuleList() {
       });
       return;
     }
-    console.log({ global });
+    // console.log({ global });
     const x = await EXEC_API({
       SQLID: 25,
       VAL1: authorization_SelectedUser.code,

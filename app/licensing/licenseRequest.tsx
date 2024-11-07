@@ -40,7 +40,7 @@ export default function LicenseRequest({ user }: TypeOfUser) {
     },
   ];
   const onClicklicenseRqst = async (e: string, i: string) => {
-    console.log({ e, i });
+    // console.log({ e, i });
 
     if (i == "Y") {
       toast({
@@ -61,7 +61,7 @@ export default function LicenseRequest({ user }: TypeOfUser) {
       title:ToastLabels(x, "t"),
       description: ToastLabels(x, "d"),
     });
-    console.log(x[0].Code);
+    // console.log(x[0].Code);
     if (x[0].Code == "-1") {
       setLoading(false);
       return;

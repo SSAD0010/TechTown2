@@ -16,10 +16,10 @@ const config = {
 async function connectToDatabase() {
   try {
     const pool = await connect(config);
-    console.log("Connected to MSSQL");
+    // console.log("Connected to MSSQL");
     return pool;
   } catch (err) {
-    console.error("Database connection failed", err);
+    // console.error("Database connection failed", err);
   }
 }
 

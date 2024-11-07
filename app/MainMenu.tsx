@@ -61,7 +61,7 @@ export default function MainMenu() {
   // }, []);
 
   const handleLogout = async () => {
-    console.log("logout");
+    // console.log("logout");
     await logout();
     ModalClose();
     setSelectedMenu("");

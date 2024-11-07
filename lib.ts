@@ -18,7 +18,7 @@ export async function encrypt(payload: any) {
       .setExpirationTime(`${ExpSec} sec from now`)
       .sign(key);
   } catch (error) {
-    console.log({ error });
+    // console.log({ error });
   }
 }
 
@@ -29,16 +29,16 @@ export async function decrypt(input: string): Promise<any> {
     });
     return payload;
   } catch (error) {
-    console.log({ error });
+    // console.log({ error });
   }
 }
 
 export async function login(formData: FormData, x: any) {
   // Verify credentials && get the user
   "use server";
-  console.log({ formData });
+  // console.log({ formData });
   const user = { username: formData.get("Username"), U_NAME: x[0].U_NAME };
-  console.log({ user });
+  // console.log({ user });
   const expires = new Date(Date.now() + ExpSec * 1000);
   const session = await encrypt({ user, expires });
 
@@ -50,9 +50,9 @@ export async function logout() {
   // Destroy the session~
   "use server";
   cookies().set("userinfo", "", { expires: new Date(0) });
-  console.log("nothing here");
+  // console.log("nothing here");
   redirect("/");
-  console.log("nothing hereasd");
+  // console.log("nothing hereasd");
 }
 
 export async function getSession() {
@@ -91,7 +91,7 @@ export async function updateSessionUserInfo() {
   const x = cookies().get("userinfo")?.value;
   if (!userinfo) return;
   const xx = await decrypt(x);
-  console.log({ xx });
+  // console.log({ xx });
 }
 export async function toDecrypt(data: string) {
   return await decrypt(data);
@@ -127,7 +127,7 @@ export async function getUserInfo() {
 //   // Verify credentials && get the user
 //   "use server";
 //   const user = { folder: formData.get("Username"), U_NAME: x[0].U_NAME };
-//   console.log({ user });
+//   // console.log({ user });
 //   const expires = new Date(Date.now() + ExpSec * 1000);
 //   const session = await encrypt({ user, expires });
 

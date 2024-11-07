@@ -40,22 +40,22 @@ export default function PasswordChange() {
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = e.target;
-    console.log({ value, id });
+    // console.log({ value, id });
     setPasswords((e) => ({ ...e, [id]: value }));
   };
 
   const save = async () => {
     const pass = await toEnrypt(passwords.oldPass);
     const newpass = await toEnrypt(passwords.newPass);
-    console.log({...passwords})
-    console.log(pass);
+    // console.log({...passwords})
+    // console.log(pass);
     const x = await EXEC_API({
       SQLID: 7,
       VAL1: (useInfo.user.username as string) || "",
       VAL2: pass || "",
       VAL3: newpass || "",
     });
-    console.log({ x });
+    // console.log({ x });
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     x.error
       ? toast({

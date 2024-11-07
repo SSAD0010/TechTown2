@@ -23,6 +23,6 @@ export default async function EXEC_API(e: EXEC_API_TYPE) {
     });
     return response.json();
   } catch (error) {
-    console.log({ error });
+    // console.log({ error });
   }
 }

@@ -37,7 +37,7 @@ export default function LicenseRequestRoot() {
     getSession();
   }, []);
   useEffect(() => {
-    console.log({ user });
+    // console.log({ user });
     getGroupInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -85,7 +85,7 @@ export default function LicenseRequestRoot() {
           <TrasnferLicense user={user} />
         )}
       </Suspense>
-      {/* <Button onClick={() => console.log(co_license)}></Button> */}
+      {/* <Button onClick={() => // console.log(co_license)}></Button> */}
     </div>
   );
 }

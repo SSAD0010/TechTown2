@@ -13,10 +13,10 @@ export default function SideBarRoot() {
 
   return (
     <div>
-      {/* <Button onClick={() => console.log()}>
+      {/* <Button onClick={() => // console.log()}>
         Get apathname
       </Button>
-      <Button onClick={() => console.log(window.location.href)}>
+      <Button onClick={() => // console.log(window.location.href)}>
         Get apathname
       </Button> */}
     

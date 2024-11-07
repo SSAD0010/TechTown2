@@ -12,14 +12,14 @@ export default function AccountDetails() {
   const [userinfo, setUserinfo] = useState<UserInfo | null>(null); // Use null for no initial data
   const igetUserInfo = async () => {
     const data = await getUserInfo();
-    console.log('data:', data)
+    // console.log('data:', data)
     setUserinfo(data);
   };
   useEffect(() => {
     igetUserInfo();
   }, []);
   useEffect(() => {
-    console.log({userinfo})
+    // console.log({userinfo})
   }, [userinfo]);
   return (
     <div>

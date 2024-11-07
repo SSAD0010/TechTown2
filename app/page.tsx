@@ -31,8 +31,8 @@ export default function Home() {
   //     body: JSON.stringify({ name, email }),
   //   });
   //   const data = await response.json();
-  //   console.log({ ...data });
-  //   console.log(data);
+  //   // console.log({ ...data });
+  //   // console.log(data);
   // };
   const setSessionAndRedirect = async (data: FormData, x: unknown) => {
     await login(data, x);
@@ -60,13 +60,13 @@ export default function Home() {
         action={async (data) => {
           setloading(true);
           const pass = await toEnrypt((data.get("Password") as string) || "");
-          console.log(pass);
+          // console.log(pass);
           const x = await EXEC_API({
             SQLID: 6,
             VAL1: (data.get("Username") as string) || "",
             VAL2: pass || "",
           });
-          console.log({ x });
+          // console.log({ x });
           x.error
             ? toast({
                 title: "Error",

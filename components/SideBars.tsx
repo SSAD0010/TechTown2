@@ -19,8 +19,8 @@ export default function SideBars() {
     setuseInfo(await getUserInfo());
   };
   const modalClose = async (url: string) => {
-    console.log({ url });
-    console.log({ useInfo });
+    // console.log({ url });
+    // console.log({ useInfo });
     // redirect(url);
 
     const x = await EXEC_API({
@@ -28,7 +28,7 @@ export default function SideBars() {
       VAL1: useInfo?.user.username,
       VAL2: url,
     });
-    console.log({ x });
+    // console.log({ x });
     if (x[0]?.Code == "-1")
       toast({
         title: ToastLabels(x, "t"),
@@ -40,7 +40,7 @@ export default function SideBars() {
     router.push(url);
 
     if (width > 760) return;
-    console.log("asd");
+    // console.log("asd");
     if (modalCloser.length > 0) {
       (modalCloser[0] as HTMLElement).click();
     }

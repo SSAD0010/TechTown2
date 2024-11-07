@@ -37,13 +37,13 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
       title:ToastLabels(x, "t"),
       description: ToastLabels(x, "d"),
     });
-    console.log(x[0].Code);
+    // console.log(x[0].Code);
     if (x[0].Code == "-1") {
       setLoading(false);
       return;
     }
 
-    console.log({ e, i });
+    // console.log({ e, i });
     setLoading(true);
     setco_license(
       await EXEC_API({
@@ -133,7 +133,7 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
                           <Button
                             className="relative "
                             onClick={() =>
-                              // console.log(ee.onlineusercode)
+                              // // console.log(ee.onlineusercode)
                               onClicklicenseRqst(
                                 e.name,
                                 ee.onlineusercode
