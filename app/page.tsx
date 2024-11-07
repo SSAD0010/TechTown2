@@ -4,7 +4,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getUserInfo, login, toEnrypt } from "@/lib";
+import { decrypt, encrypt, getUserInfo, login, toEnrypt } from "@/lib";
 // import { useRouter } from "next/compat/router";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -113,9 +113,9 @@ export default function Home() {
         />
         <Separator />
         <div className="flex justify-between">
-          <Button variant="secondary" type="submit">
+          {/* <Button variant="secondary" type="submit">
             Register
-          </Button>
+          </Button> */}
           <Button className="" type="submit" disabled={loading}>
             {loading ? (
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
@@ -124,7 +124,15 @@ export default function Home() {
             )}
           </Button>
         </div>
-      </form> 
+      </form>
+{/* 
+      <Button
+        onClick={async () => {
+          console.log();
+        }}
+      >
+        Encryp
+      </Button> */}
     </div>
   );
 }
