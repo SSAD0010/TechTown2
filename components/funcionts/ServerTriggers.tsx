@@ -22,7 +22,8 @@ export default async function EXEC_API(e: EXEC_API_TYPE) {
       body: JSON.stringify({ ...e }),
     });
     return response.json();
-  } catch (error) {
-    // console.log({ error });
+  } catch (x) {
+    
+    console.log({ x });
   }
 }

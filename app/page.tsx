@@ -4,7 +4,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { decrypt, encrypt, getUserInfo, login, toEnrypt } from "@/lib";
+import { getUserInfo, login, toEnrypt } from "@/lib";
 // import { useRouter } from "next/compat/router";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
