@@ -3,7 +3,6 @@
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
-import TechTown from "./TechTown";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function Header() {
