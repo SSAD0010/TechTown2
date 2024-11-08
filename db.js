@@ -1,28 +1,42 @@
 // db.js
+import { jwtVerify } from "jose";
 import { connect } from "mssql";
 
-const passAsync = async () => {
-  const x = await decrypt(
-    "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiUEBzc3cwcmQ4MDV-In0.RaRWC9eH5v2Udaw9DtGOjq1irIiJ7kt1Guu6ZxNt5E8"
-  );
-  return x.data | "";
+const key = new TextEncoder().encode(process.env.KEY);
+const dycrptor = async (xx) => {
+  const x = await decrypt(xx);
+  // console.log(x.data);
+  return x.data;
 };
 
-const config = {
-  user: "sap",
-  password: passAsync(),
-  server: "3.1.37.245",
-  database: "tt",
-  requestTimeout: 500 * 1000,
-  options: {
-    encrypt: true,
-    trustServerCertificate: true,
-  },
-};
+async function config() {
+  return {
+    user: await dycrptor(process.env.DB_USER),
+    password: await dycrptor(process.env.DB_PASS),
+    server: await dycrptor(process.env.DB_IP),
+    database: await dycrptor(process.env.DB),
+    requestTimeout: 500 * 1000,
+    options: {
+      encrypt: true,
+      trustServerCertificate: true,
+    },
+  };
+}
+
+async function decrypt(input) {
+  try {
+    const { payload } = await jwtVerify(input, key, {
+      algorithms: ["HS256"],
+    });
+    return await payload;
+  } catch (error) {
+    // console.log({ error });
+  }
+}
 
 async function connectToDatabase() {
-  try {
-    const pool = await connect(config);
+  try { 
+    const pool = connect(await config());
     console.log("Connected to MSSQL");
     return pool;
   } catch (err) {

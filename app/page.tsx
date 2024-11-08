@@ -125,14 +125,14 @@ export default function Home() {
           </Button>
         </div>
       </form>
-{/* 
       <Button
         onClick={async () => {
-          console.log();
+          const Encryp = await toEnrypt("sap");
+          console.log({Encryp})
         }}
       >
         Encryp
-      </Button> */}
+      </Button>  
     </div>
   );
 }

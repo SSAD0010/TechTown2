@@ -22,7 +22,7 @@ export default function Header() {
       <div className=" flex ">
         {/* <MainMenuSheet /> */}
      <SidebarTrigger/>
-        <TechTown />
+        {/* <TechTown /> */}
       </div>
       <div className="   "></div>
       <div className="w-full"></div>
