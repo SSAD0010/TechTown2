@@ -59,6 +59,10 @@ export default function Home() {
         className="max-w-[416px] grid  gap-4  mx-auto w-fit  "
         action={async (data) => {
           setloading(true);
+          toast({
+            title: "",
+            description: "Logging in ...",
+          });
           const pass = await toEnrypt((data.get("Password") as string) || "");
           // console.log(pass);
           const x = await EXEC_API({
@@ -116,7 +120,17 @@ export default function Home() {
           {/* <Button variant="secondary" type="submit">
             Register
           </Button> */}
-          <Button className="" type="submit" disabled={loading}>
+          <Button
+            className=""
+            type="submit"
+            disabled={loading}
+            onClick={() =>
+              toast({
+                title: "",
+                description: "Logging in ...",
+              })
+            }
+          >
             {loading ? (
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
             ) : (
