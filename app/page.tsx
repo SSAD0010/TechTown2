@@ -76,9 +76,10 @@ export default function Home() {
   return (
     <div className=" content  w-fit mx-auto   grid  mt-4  items-center justify-items-center  gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       {/* <LoginLayout /> */}
-
-      <form
-        className="max-w-[416px] grid  gap-4  mx-auto w-fit  "
+<div className="  p-4 rounded-md bg w-[360px]">
+  
+<form
+        className="max-w-[300px] grid  gap-4  mx-auto  rounded-md "
         action={async (data) => {
           setloading(true);
 
@@ -106,14 +107,14 @@ export default function Home() {
           setloading(false);
         }}
       >
-        <div className="flex gap-2">
+        <div className="flex gap-2 max-w-[320px] px-4">
           <Image
             src={dolmarlogo}
             alt="Picture of the author"
-            className="bg-white rounded-md p-1 min-w-[70px] max-w-[70px]"
+            className="bg-white rounded-md p-1  max-w-[60px] max-h-[60px]"
           />
           <div>
-            <h1 className=" flex scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl">
+            <h1 className=" flex scroll-m-20 text-4xl font-bold tracking-tight lg:text-4xl">
               DolmarLand
               <br />
             </h1>
@@ -140,7 +141,7 @@ export default function Home() {
             Register
           </Button> */}
           <Button
-            className=""
+            className="w-full"
             type="submit"
             disabled={loading}
             onClick={() =>
@@ -158,6 +159,7 @@ export default function Home() {
           </Button>
         </div>
       </form>
+</div>
       {/* <Button
         onClick={async () => {
           const Encryp = await toEnrypt("sap");
