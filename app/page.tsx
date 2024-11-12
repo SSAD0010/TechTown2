@@ -5,21 +5,22 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getUserInfo, login, toEnrypt } from "@/lib";
-// import { useRouter } from "next/compat/router";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { useToast } from "@/hooks/use-toast";
 import { ReloadIcon } from "@radix-ui/react-icons";
-// import { useRouter } from "next/router";
 import dolmarlogo from "./image/DolmarLogopng.png";
 import Image from "next/image";
+import { useAppContext } from "@/context";
 export default function Home() {
   const { toast } = useToast();
+  const {  setuseInfo } = useAppContext();
 
   // const [name] = useState("x");
   // const [email] = useState("x");
   const [loading, setloading] = useState(false);
+  const router = useRouter();
 
   // const selectusers = async () => {
   //   // "use server";
@@ -50,6 +51,22 @@ export default function Home() {
       }
     })();
   }, []);
+
+
+
+  useEffect(() => {
+    (async () => {
+      const data = await getUserInfo();
+      console.log({data})
+      setuseInfo(data);
+      if (!data?.user?.username) {
+        return;
+      }
+      router.push("/home");
+    })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   return (
     <div className=" content  w-fit mx-auto   grid  mt-4  items-center justify-items-center  gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
