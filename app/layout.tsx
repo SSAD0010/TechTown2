@@ -9,6 +9,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import SideBarRoot from "./SideBarRoot";
 import { Suspense } from "react";
 import Loading from "./loading";
+import Footer from "./footer/footer";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -60,6 +61,7 @@ export default function RootLayout({
                     <Suspense fallback={<Loading />}>
                       <div className="p-4 ">{children}</div>
                     </Suspense>
+                    <Footer/>
                   </div>
                 </SidebarProvider>
               </div>

@@ -1,7 +1,8 @@
 "use client";
+import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { Input } from "@/components/ui/input";
 import { useAppContext } from "@/context";
-import { useToast } from "@/hooks/use-toast";
+import { toast, useToast } from "@/hooks/use-toast";
 import { getUserInfo } from "@/lib";
 import { Label } from "@radix-ui/react-label";
 import { BookA, Calendar, IdCard, Settings } from "lucide-react";
@@ -101,7 +102,6 @@ type TypeOfXToast = {
 //   // You can define other properties of X if needed
 // }
 
-
 export const ToastLabels = (x: TypeOfXToast, type: string) => {
   if (type == "t") {
     const toastTitle: string = x.error
@@ -145,3 +145,32 @@ export const MenuItems = [
     icon: Settings,
   },
 ];
+
+export const IsAuthorized = async (url: string) => {
+  // console.log({ url });
+  // console.log({ useInfo });
+  // redirect(url);
+  const userinfo = await fgetUserInfo();
+  const x = await EXEC_API({
+    SQLID: 27,
+    VAL1: userinfo?.user.username,
+    VAL2: url,
+  });
+
+  if (x[0]?.Code == "-1")
+    toast({
+      title: ToastLabels(x, "t"),
+      description: ToastLabels(x, "d"),
+    });
+
+  return x[0]?.Code;
+
+  // const modalCloser = document.getElementsByClassName("sidebartrigger");
+  // router.push(url);
+
+  // if (width > 760) return;
+  // // console.log("asd");
+  // if (modalCloser.length > 0) {
+  //   (modalCloser[0] as HTMLElement).click();
+  // }
+};
