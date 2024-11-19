@@ -29,9 +29,10 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
 
     const x = await EXEC_API({
       SQLID: 22,
-      VAL1: user.user.U_NAME,
+      VAL1: user.user.username,
       VAL2: i,
       VAL3: e,
+      
     });
     toast({
       title:ToastLabels(x, "t"),

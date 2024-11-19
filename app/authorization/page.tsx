@@ -12,6 +12,8 @@ import ModuleList from "./moduleList";
 import UserList from "./UserList";
 
 export default function page() {
+
+
   return (
     <div className="sm:flex gap-4">
       <div className="  sm:h-[80vh] h-[40vh]  overflow-auto border p-4 rounded-md">

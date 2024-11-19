@@ -128,7 +128,7 @@ export default function LicenseRequest({ user }: TypeOfUser) {
         <div>Request a License</div>
         <div className="text-sm ">
           {user?.user?.username}{" "}
-          <span className="text-muted-foreground">{user?.user?.username} </span>
+          <span className="text-muted-foreground">{user?.user?.U_NAME} </span>
         </div>
       </div>
       <div className="flex gap-2 mt-2">{Buttons()}</div>
