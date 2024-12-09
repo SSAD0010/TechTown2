@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     }',  @VAL7 = '${req.body.VAL7 || ""}',  @VAL8 = '${
       req.body.VAL8 || ""
     }',  @VAL9 = '${req.body.VAL9 || ""}',  @VAL10 = '${req.body.VAL10 || ""}'`;
-    // console.log({query})
+    console.log({query})
     const result = await pool.request().query(query);
     // console.log(result.recordset)
     res.status(200).json(result.recordset);

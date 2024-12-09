@@ -25,6 +25,8 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
   const { setLoading, co_license, setco_license } = useAppContext();
 
   const onClicklicenseRqst = async (e: string, i: string) => {
+
+    
     setLoading(true);
 
     const x = await EXEC_API({
