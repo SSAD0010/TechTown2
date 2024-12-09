@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     console.log(result.recordset)
     res.status(200).json(result.recordset);
   } catch (error) {
-    console.log( "500: ",{error: "Error fetching data", error })
+    console.log( "500: ",{error: "Error fetching dasdata", error })
     res.status(500).json({ error: "Error fetching data", error });
   }
 }
