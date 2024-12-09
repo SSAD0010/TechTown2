@@ -15,7 +15,7 @@ import Image from "next/image";
 import { useAppContext } from "@/context";
 export default function Home() {
   const { toast } = useToast();
-  const { setuseInfo } = useAppContext();
+  const {  setuseInfo } = useAppContext();
 
   // const [name] = useState("x");
   // const [email] = useState("x");
@@ -52,26 +52,21 @@ export default function Home() {
     })();
   }, []);
 
+
+
   useEffect(() => {
     (async () => {
       const data = await getUserInfo();
-      console.log({ data });
+      console.log({data})
       setuseInfo(data);
       if (!data?.user?.username) {
         return;
       }
       router.push("/home");
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const redirectx = (x: any) => {
-    toast({
-      title: "",
-      description: `WELCOME ${x[0].U_NAME}`,
-    });
-    redirect("/licensing");
-  };
+
 
   return (
     <div className=" content  w-fit mx-auto   grid  mt-4  items-center justify-items-center  gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -82,7 +77,10 @@ export default function Home() {
         className="max-w-[300px] grid  gap-4  mx-auto  rounded-md "
         action={async (data) => {
           setloading(true);
-
+          toast({
+            title: "",
+            description: "Logging in ...",
+          });
           const pass = await toEnrypt((data.get("Password") as string) || "");
           // console.log(pass);
           const x = await EXEC_API({
@@ -103,7 +101,7 @@ export default function Home() {
                 title: "",
                 description: "Your account or password is incorrect.",
               })
-            : setSessionAndRedirect(data, x).then(redirectx(x));
+            : setSessionAndRedirect(data, x).then(redirect("/licensing"));
           setloading(false);
         }}
       >

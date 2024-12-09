@@ -18,10 +18,10 @@ export default async function handler(req, res) {
     }',  @VAL9 = '${req.body.VAL9 || ""}',  @VAL10 = '${req.body.VAL10 || ""}'`;
     console.log({query})
     const result = await pool.request().query(query);
-    // console.log(result.recordset)
+    console.log(result.recordset)
     res.status(200).json(result.recordset);
   } catch (error) {
-    // console.log( "500: ",{error: "Error fetching data", error })
+    console.log( "500: ",{error: "Error fetching data", error })
     res.status(500).json({ error: "Error fetching data", error });
   }
 }

@@ -23,7 +23,6 @@ export default function SideBars() {
     // console.log({ useInfo });
     // redirect(url);
 
-    
     const x = await EXEC_API({
       SQLID: 27,
       VAL1: useInfo?.user.username,
@@ -46,8 +45,6 @@ export default function SideBars() {
       (modalCloser[0] as HTMLElement).click();
     }
   };
-
-  
   useEffect(() => {
     getuser();
   }, []);
