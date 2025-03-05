@@ -30,7 +30,7 @@ async function decrypt(input) {
     });
     return await payload;
   } catch (error) {
-    // console.log({ error });
+     console.error("Failed to Decrypt", error);
   }
 }
 
