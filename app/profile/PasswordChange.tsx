@@ -78,7 +78,7 @@ export default function PasswordChange() {
 
   return (
     <div className="">
-      <p className="text-sm text-muted-foreground">Passowrd</p>
+      <p className="text-sm text-muted-foreground">Password</p>
    
       <div className="flex pb-2">
         <Button
