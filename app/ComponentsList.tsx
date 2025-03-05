@@ -5,7 +5,32 @@ import { useToast } from "@/hooks/use-toast";
 import { getUserInfo } from "@/lib";
 import { Label } from "@radix-ui/react-label";
 import { BookA, Calendar, IdCard, Settings } from "lucide-react";
+import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { useEffect } from "react";
+
+export const IsAuthorized = async (url: string) => {
+  // console.log({ url });
+  // console.log({ useInfo });
+  // redirect(url);
+
+  const { toast } = useToast();
+
+  const userinfo = await fgetUserInfo();
+  const x = await EXEC_API({
+    SQLID: 27,
+    VAL1: userinfo?.user.username,
+    VAL2: url,
+  });
+
+  if (x[0]?.Code == "-1")
+    toast({
+      title: ToastLabels(x, "t"),
+      description: ToastLabels(x, "d"),
+    });
+
+  return x[0]?.Code;
+ 
+};
 
 export const IToaster = () => {
   const { toast } = useToast();
@@ -75,7 +100,7 @@ export function Title() {
   );
 }
 
-export default function ComponentsList() {
+export default function ComponentsList(pathname: string) {
   return <div></div>;
 }
 
