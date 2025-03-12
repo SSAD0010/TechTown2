@@ -100,7 +100,8 @@ export function Title() {
   );
 }
 
-export default function ComponentsList() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function ComponentsList(pathname: string) {
   return <div></div>;
 }
 

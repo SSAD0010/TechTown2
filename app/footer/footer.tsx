@@ -18,7 +18,7 @@ export default function Footer() {
       if (pathname == "/home") return;
       if (pathname == "/logout") return;
       if (pathname == undefined) return;
-      const x = await IsAuthorized(pathname);
+      const x = IsAuthorized(pathname);
       if (typeof x === "string" && x === "-1") router.push("/home");
       //if(x === "-1") router.push("/home");
     })();
