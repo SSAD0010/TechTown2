@@ -100,7 +100,7 @@ export function Title() {
   );
 }
 
-export default function ComponentsList(pathname: string) {
+export default function ComponentsList() {
   return <div></div>;
 }
 
