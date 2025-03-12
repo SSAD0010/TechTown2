@@ -23,7 +23,7 @@ export default function GroupListManager() {
   const getGroup = async () => {
     setgroupList(await EXEC_API({ SQLID: 9 }));
   };
-  const addGroupToDB = async () => {
+  const addGroupToDB = async () => { //add group to db
     const x = await EXEC_API({ SQLID: 10, VAL1: groupNameToAdd });
     // XToast(x);
 
@@ -34,7 +34,7 @@ export default function GroupListManager() {
 
     getGroup();
   };
-  const checkboxHandler = async (e: string, id: string, xx: boolean) => {
+  const checkboxHandler = async (e: string, id: string, xx: boolean) => { //updating group OLGM
     const xxx = xx ? "1" : "0";
     const x = await EXEC_API({ SQLID: 13, VAL1: e, VAL2: id, VAL3: xxx });
     toast({

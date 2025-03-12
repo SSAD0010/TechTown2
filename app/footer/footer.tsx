@@ -19,8 +19,8 @@ export default function Footer() {
       if (pathname == "/logout") return;
       if (pathname == undefined) return;
       const x = await IsAuthorized(pathname);
-      //if (typeof x === "string" && x === "-1") router.push("/home");
-      if(x === "-1") router.push("/home");
+      if (typeof x === "string" && x === "-1") router.push("/home");
+      //if(x === "-1") router.push("/home");
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);

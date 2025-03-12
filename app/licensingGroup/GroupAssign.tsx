@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 import GroupListPopUp from "./GroupListPopUp";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 
-export default function GroupAssign() {
+export default function GroupAssign() {  
   const [userList, setuserList] = useState([]);
   const [loading, setloading] = useState(false);
   const [grouList, setgrouList] = useState([]);
 
-  const getGroupList = async () => {
+  const getGroupList = async () => { //get group 
     setgrouList(await EXEC_API({ SQLID: 9 }));
   };
-  const getUsers = async () => {
+  const getUsers = async () => { //get list for users login
     const x = await EXEC_API({ SQLID: 8 });
     setuserList(x);
   };
