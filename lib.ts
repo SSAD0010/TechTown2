@@ -37,7 +37,7 @@ export async function login(formData: FormData, x: any) {
   // Verify credentials && get the user
   "use server";
   // console.log({ formData });
-  const user = { username: formData.get("Username"), U_NAME: x[0].U_NAME };
+  const user = { username: (formData.get("Username") as string).toUpperCase(), U_NAME: x[0].U_NAME };
   // console.log({ user });
   const expires = new Date(Date.now() + ExpSec * 1000);
   const session = await encrypt({ user, expires });

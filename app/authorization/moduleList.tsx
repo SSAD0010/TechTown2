@@ -8,7 +8,7 @@ import { useAppContext } from "@/context";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { useToast } from "@/hooks/use-toast";
 
-export default function ModuleList() {
+export default function ModuleList() { //FOR AUTHORIZATION
   const { toast } = useToast();
   const {
     useInfo,
@@ -35,7 +35,7 @@ export default function ModuleList() {
       SQLID: 25,
       VAL1: authorization_SelectedUser.code,
       VAL2: module,
-      VAL3: useInfo?.user.username,
+      VAL3: useInfo?.user.username.toUpperCase(),
       VAL4: value,
       VAL5: global == "" ? "false" : "true",
     });

@@ -18,7 +18,7 @@ export const IsAuthorized = async (url: string) => {
   const userinfo = await fgetUserInfo();
   const x = await EXEC_API({
     SQLID: 27,
-    VAL1: userinfo?.user.username,
+    VAL1: userinfo?.user.username.toUpperCase(),
     VAL2: url,
   });
 

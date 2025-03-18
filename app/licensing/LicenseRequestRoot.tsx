@@ -26,7 +26,7 @@ export default function LicenseRequestRoot() {
   const getGroupInfo = async () => {
     setLoading(true);
     if (user?.user?.username)
-      setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username }));
+      setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username.toUpperCase() }));
     setLoading(false);
   };
 

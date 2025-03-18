@@ -31,7 +31,7 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
 
     const x = await EXEC_API({
       SQLID: 22,
-      VAL1: user.user.username,
+      VAL1: user.user.username.toUpperCase(),
       VAL2: i,
       VAL3: e,
       
@@ -52,7 +52,7 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
       await EXEC_API({
         SQLID: 1,
         VAL1: "B",
-        VAL2: user?.user?.username,
+        VAL2: user?.user?.username.toUpperCase(),
         VAL3: i || "",
         VAL4:
           e == "crm"
@@ -75,7 +75,7 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
   const getGroupInfo = async () => {
     setLoading(true);
     if (user?.user?.username)
-      setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username }));
+      setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username.toUpperCase() }));
     setLoading(false);
   };
 
@@ -117,7 +117,7 @@ export default function TrasnferLicense({ user }: TypeOfUser) {
     return (
       <>
         {co_license
-          .filter((e) => e.onlineusercode != user?.user?.username)
+          .filter((e) => e.onlineusercode != user?.user?.username.toUpperCase())
           .map((ee) => (
             <>
               <div className="flex justify-between mt-2">

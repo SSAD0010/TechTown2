@@ -54,7 +54,7 @@ export default function LicenseRequest({ user }: TypeOfUser) {
 
     const x = await EXEC_API({
       SQLID: 23,
-      VAL1: user.user.username,
+      VAL1: user.user.username.toUpperCase(),
       VAL2: e,
     });
     toast({
@@ -70,7 +70,7 @@ export default function LicenseRequest({ user }: TypeOfUser) {
       await EXEC_API({
         SQLID: 1,
         VAL1: "A",
-        VAL2: user.user.username,
+        VAL2: user.user.username.toUpperCase(),
         VAL3: "",
         VAL4:
           e == "crm"
@@ -94,7 +94,7 @@ export default function LicenseRequest({ user }: TypeOfUser) {
     return (
       <>
         {co_license
-          .filter((e) => e.onlineusercode == user?.user?.username)
+          .filter((e) => e.onlineusercode == user?.user?.username.toUpperCase())
           .map((ee) => (
             <>
               {listOfLicense.map((e) => (

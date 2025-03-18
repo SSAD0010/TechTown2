@@ -85,7 +85,7 @@ export default function Home() {
           // console.log(pass);
           const x = await EXEC_API({
             SQLID: 6,
-            VAL1: (data.get("Username") as string) || "",
+            VAL1: ((data.get("Username") as string)?.toUpperCase()) || "",
             VAL2: pass || "",
           });
           // console.log({ x });

@@ -51,7 +51,7 @@ export default function PasswordChange() {
     // console.log(pass);
     const x = await EXEC_API({
       SQLID: 7,
-      VAL1: (useInfo.user.username as string) || "",
+      VAL1: (useInfo.user.username as string).toUpperCase() || "",
       VAL2: pass || "",
       VAL3: newpass || "",
     });

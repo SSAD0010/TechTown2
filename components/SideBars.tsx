@@ -25,7 +25,7 @@ export default function SideBars() {
 
     const x = await EXEC_API({
       SQLID: 27,
-      VAL1: useInfo?.user.username,
+      VAL1: useInfo?.user.username.toUpperCase(),
       VAL2: url,
     });
     // console.log({ x });
