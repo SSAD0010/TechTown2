@@ -72,7 +72,7 @@ export default function LoginLayout() {
             {/* <Button onClick={Register} variant="outline">
               Register
             </Button> */}
-            <Button type="submit">Login</Button>
+            <Button type="submit">Login</Button>          
           </CardFooter>
         </form>
       </Card>
