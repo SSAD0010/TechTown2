@@ -63,17 +63,7 @@ export default async function LicenseRequestRoot() {
     );
   };
   const [sqlResult, setSqlResult] = useState<any[]>([]);
-  const [isLicenseLoaded, setIsLicenseLoaded] = useState(false);
  
-  useEffect(() => {
-    const fetchData = async () => {
-      if (user?.user?.username && isLicenseLoaded) {
-        const result = await EXEC_API({ SQLID: 31, VAL1: user?.user?.username.toUpperCase() });
-        setSqlResult(result); // Store the result in state
-      }
-    };
-    fetchData();
-  }, [user, isLicenseLoaded]);
   return (
     <div>
       <Suspense fallback={<Loading />}>
