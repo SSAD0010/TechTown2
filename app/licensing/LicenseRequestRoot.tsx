@@ -7,8 +7,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { getUserInfo } from "@/lib";
 import { useAppContext } from "@/context";
+//import GroupListPopUp from "./GroupListPopUp";
 
-export default function LicenseRequestRoot() {
+export default async function LicenseRequestRoot() {
   type TypeOfUser = {
       user: {
         username: string;
@@ -18,15 +19,18 @@ export default function LicenseRequestRoot() {
       iat: number;
       exp: number;
   };
+  
 
   const [user, setuser] = useState<TypeOfUser | null>(null);
 
   const { Loading, setLoading,  setco_license } = useAppContext();
+ 
+
 
   const getGroupInfo = async () => {
     setLoading(true);
-    if (user?.user?.username)
-      setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username.toUpperCase() }));
+    if (user?.user?.username )
+            setco_license(await EXEC_API({ SQLID: 19, VAL1: user?.user?.username.toUpperCase() }));
     setLoading(false);
   };
 
@@ -57,16 +61,47 @@ export default function LicenseRequestRoot() {
       </>
     );
   };
-
+  const [sqlResult, setSqlResult] = useState<any[]>([]);
+  const [isLicenseLoaded, setIsLicenseLoaded] = useState(false);
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user?.user?.username && isLicenseLoaded) {
+        const result = await EXEC_API({ SQLID: 31, VAL1: user?.user?.username.toUpperCase() });
+        setSqlResult(result); // Store the result in state
+      }
+    };
+    fetchData();
+  }, [user, isLicenseLoaded]);
   return (
     <div>
       <Suspense fallback={<Loading />}>
         {Loading ? (
           <LoadingTemplte />
         ) : (
-          <LicenseRequest user={user} />
+          <LicenseRequest
+            user={user}
+            // Mark as loaded when LicenseRequest finishes
+            // Pass a callback to handle loading
+            onLoad={async () => {
+           //  setIsLicenseLoaded(true); // Mark as loaded
+            const result = await EXEC_API({ SQLID: 31, VAL1: user?.user?.username.toUpperCase() });
+             setSqlResult(result); // Fetch and update sqlResult after TrasnferLicense finishes
+            }}
+            //onLoad={() => setIsLicenseLoaded(true)} 
+          />
         )}
       </Suspense>
+      <Separator className="my-4" />
+      <p className="text-muted-foreground text-sm">
+        Available licenses:{" "}
+        {sqlResult.length > 0
+          ? sqlResult.map((row) => Object.values(row).join(" / "))
+          : "Loading..."}
+          
+      </p>
+
+      <br />
       <Separator className="my-4" />
       <p className="font-medium">License co-user</p>
       <p className="text-muted-foreground text-xs">
@@ -82,10 +117,23 @@ export default function LicenseRequestRoot() {
             <LoadingTemplte />
           </>
         ) : (
-          <TrasnferLicense user={user} />
+          <TrasnferLicense user={user} 
+             // onLoad={async () => {
+            //    if (!isLicenseLoaded) { // Ensure it only runs once
+            //      setIsLicenseLoaded(true);
+           //       const result = await EXEC_API({
+           //         SQLID: 31,
+           //         VAL1: user?.user?.username.toUpperCase(),
+           //       });
+           //       setSqlResult(result);
+           //     }
+           //   }}
+         
+          //resetSqlResult();
+          />
         )}
       </Suspense>
-      {/* <Button onClick={() => // console.log(co_license)}></Button> */}
-    </div>
+         
+          </div>
   );
 }

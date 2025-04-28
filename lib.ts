@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const secretKey = "xXx";
 const key = new TextEncoder().encode(secretKey);
-const ExpSec = 1800;
+const ExpSec = 2100;
 // const ExpSec = 10;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -17,6 +17,7 @@ export async function encrypt(payload: any) {
       .setIssuedAt()
       .setExpirationTime(`${ExpSec} sec from now`)
       .sign(key);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     // console.log({ error });
   }
@@ -28,6 +29,7 @@ export async function decrypt(input: string): Promise<any> {
       algorithms: ["HS256"],
     });
     return payload;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     // console.log({ error });
   }
@@ -88,9 +90,7 @@ export async function updateSessionUserInfo() {
   const session = await encrypt({ ...user, expires });
   // Save the session in a cookie
   cookies().set("userinfo", session, { expires, httpOnly: true });
-  const x = cookies().get("userinfo")?.value;
   if (!userinfo) return;
-  const xx = await decrypt(x);
   // console.log({ xx });
 }
 export async function toDecrypt(data: string) {

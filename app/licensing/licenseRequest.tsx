@@ -1,7 +1,7 @@
 "use client";
 import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect } from "react";
 import { ToastLabels } from "../ComponentsList";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
@@ -19,8 +19,16 @@ type TypeOfUser = {
   };
 };
 
-export default function LicenseRequest({ user }: TypeOfUser) {
+export default function LicenseRequest({ user , onLoad }: TypeOfUser & { onLoad?: () => void }) {
   // const [userData, setuserData] = useState([]);
+  useEffect(() => {
+   // if (onLoad) {
+   //   onLoad(); // Call onLoad when the component finishes loading
+   // }
+   onLoad();
+  }, []);
+
+ 
   const { setLoading, co_license, setco_license } = useAppContext();
 
   // const [userDataLicense, setuserDataLicense] = useState([]);
@@ -49,8 +57,8 @@ export default function LicenseRequest({ user }: TypeOfUser) {
       });
       return;
     }
-
     setLoading(true);
+    onLoad();
 
     const x = await EXEC_API({
       SQLID: 23,
@@ -121,7 +129,7 @@ export default function LicenseRequest({ user }: TypeOfUser) {
       </>
     );
   }
-
+ 
   return (
     <div className="flex w-full justify-between">
       <div>

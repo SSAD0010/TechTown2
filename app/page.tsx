@@ -158,11 +158,8 @@ export default function Home() {
         
         </div>
         <a
-    href="/reset-password"
-     className="flex justify-center mt-2"
-  >
-    Forgot Password?
-  </a>
+    href="/resetpassword"
+     className="flex justify-center mt-2"  >    Forgot Password?  </a>
       </form>
 </div>
       {/* <Button
