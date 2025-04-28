@@ -9,7 +9,7 @@ import EXEC_API from "@/components/funcionts/ServerTriggers";
 import { getUserInfo } from "@/lib";
 import { useAppContext } from "@/context";
 //import GroupListPopUp from "./GroupListPopUp";
-
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 export default async function LicenseRequestRoot() {
   type TypeOfUser = {
       user: {
@@ -85,11 +85,11 @@ export default async function LicenseRequestRoot() {
             // Mark as loaded when LicenseRequest finishes
             // Pass a callback to handle loading
             onLoad={async () => {
-           //  setIsLicenseLoaded(true); // Mark as loaded
+           
             const result = await EXEC_API({ SQLID: 31, VAL1: user?.user?.username.toUpperCase() });
              setSqlResult(result); // Fetch and update sqlResult after TrasnferLicense finishes
             }}
-            //onLoad={() => setIsLicenseLoaded(true)} 
+           
           />
         )}
       </Suspense>
@@ -119,18 +119,7 @@ export default async function LicenseRequestRoot() {
           </>
         ) : (
           <TrasnferLicense user={user} 
-             // onLoad={async () => {
-            //    if (!isLicenseLoaded) { // Ensure it only runs once
-            //      setIsLicenseLoaded(true);
-           //       const result = await EXEC_API({
-           //         SQLID: 31,
-           //         VAL1: user?.user?.username.toUpperCase(),
-           //       });
-           //       setSqlResult(result);
-           //     }
-           //   }}
-         
-          //resetSqlResult();
+           
           />
         )}
       </Suspense>
